@@ -1,0 +1,12 @@
+.popup__button_purpose_close {
+  position: absolute;
+  background-image: url(../../../../images/close.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  width: 20px;
+  height: 20px;
+  top: -40px;
+  right: 0px;
+  background-color: transparent;
+}

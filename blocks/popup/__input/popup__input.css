@@ -1,0 +1,16 @@
+.popup__input {
+  border: none;
+  outline: none;
+  color: #000;
+  min-width: 238px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0 0 13px;
+  margin: 0 0 30px;
+  font-family: 'inter', sans-serif;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.popup__input:nth-child(2) {
+  margin: 0;
+}
