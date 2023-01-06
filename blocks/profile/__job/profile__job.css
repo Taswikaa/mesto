@@ -4,4 +4,6 @@
   margin: 0;
   font-size: 14px;
   line-height: 17px;
+  max-width: 55vw;
+  text-align: center;
 }
