@@ -14,3 +14,9 @@
 .popup__input:nth-child(2) {
   margin: 0;
 }
+
+@media screen and (min-width: 880px) {
+  .popup__input {
+    min-width: 358px;
+  }
+}

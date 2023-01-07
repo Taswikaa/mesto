@@ -9,4 +9,17 @@
   background-size: 16px;
   background-position: 50% 50%;
   background-repeat: no-repeat;
+  transition: opacity .5s;
+}
+
+.profile__add-button:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1024px) {
+  .profile__add-button {
+    width: 150px;
+    margin-left: auto;
+  }
 }

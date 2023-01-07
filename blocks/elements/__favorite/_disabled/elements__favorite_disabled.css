@@ -1,7 +1,7 @@
 .elements__favorite_disabled {
-  background-image: url(../../../../images/like.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 22px;
-  height: 19px;
+  transition: opacity .5s;
+}
+
+.elements__favorite_disabled:hover {
+  opacity: .5;
 }

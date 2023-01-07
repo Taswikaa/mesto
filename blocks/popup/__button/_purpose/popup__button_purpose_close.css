@@ -9,4 +9,18 @@
   top: -40px;
   right: 0px;
   background-color: transparent;
+  transition: opacity .5s;
+}
+
+.popup__button_purpose_close:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 880px) {
+  .popup__button_purpose_close {
+    width: 32px;
+    height: 32px;
+    right: -40px;
+  }
 }

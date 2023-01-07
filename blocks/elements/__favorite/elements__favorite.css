@@ -1,0 +1,11 @@
+.elements__favorite {
+  background-image: url(../../../../images/like.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 22px;
+  height: 19px;
+}
+
+.elements__favorite:hover {
+  cursor: pointer;
+}

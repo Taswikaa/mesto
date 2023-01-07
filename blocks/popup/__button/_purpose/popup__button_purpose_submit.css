@@ -7,4 +7,18 @@
   background-color: #000;
   padding: 14px 82px;
   margin: 45px 0 0;
+  transition: opacity .5s;
+}
+
+.popup__button_purpose_submit:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 880px) {
+  .popup__button_purpose_submit {
+    width: 358px;
+    font-size: 18px;
+    line-height: 22px;
+  }
 }

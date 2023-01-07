@@ -3,3 +3,16 @@
   max-width: 282px;
   padding: 50px 0 35px;
 }
+
+@media screen and (min-width: 768px) {
+  .footer {
+    max-width: 581px;
+  }
+}
+
+@media screen and (min-width: 880px) {
+  .footer {
+    max-width: 863px;
+    padding: 66px 0 60px;
+  }
+}

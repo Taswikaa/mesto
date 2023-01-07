@@ -9,3 +9,9 @@
   position: relative;
   border-radius: 10px;
 }
+
+@media screen and (min-width: 880px) {
+  .popup__container {
+    min-width: 430px;
+  }
+}
