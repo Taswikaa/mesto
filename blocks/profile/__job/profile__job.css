@@ -5,13 +5,17 @@
   margin: 0;
   font-size: 14px;
   line-height: 17px;
-  max-width: 55vw;
+  max-width: 150px;
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 1024px) {
   .profile__job {
     font-size: 18px;
     line-height: 22px;
+    max-width: 270px;
   }
 }
