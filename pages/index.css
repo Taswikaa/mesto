@@ -21,7 +21,6 @@
 @import url(../blocks/elements/__card/elements__card.css);
 @import url(../blocks/elements/__wrapper/elements__wrapper.css);
 @import url(../blocks/elements/__favorite/_active/elements__favorite_active.css);
-@import url(../blocks/elements/__favorite/_disabled/elements__favorite_disabled.css);
 @import url(../blocks/elements/__image/elements__image.css);
 @import url(../blocks/elements/__info/elements__info.css);
 @import url(../blocks/elements/__name/elements__name.css);
