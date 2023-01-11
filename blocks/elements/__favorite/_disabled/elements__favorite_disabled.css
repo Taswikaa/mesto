@@ -1,7 +1,3 @@
 .elements__favorite_disabled {
   transition: opacity .5s;
 }
-
-.elements__favorite_disabled:hover {
-  opacity: .5;
-}

@@ -1,5 +1,5 @@
 .elements__favorite {
-  background-image: url(../../../../images/like.svg);
+  background-image: url(../../../images/like.svg);
   background-size: contain;
   background-repeat: no-repeat;
   width: 22px;
@@ -8,4 +8,5 @@
 
 .elements__favorite:hover {
   cursor: pointer;
+  opacity: .5;
 }

@@ -4,10 +4,96 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mesto</title>
+  <title>Место</title>
   <link rel="stylesheet" href="pages/index.css">
 </head>
 <body class="page">
+  <header class="header">
+    <img class="header__logo" src="images/logo.svg" alt="Логотип">
+  </header>
+  <main class="main">
+    <section class="profile">
+      <img class="profile__avatar" src="images/bg.png" alt="Аватар">
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <button class="button profile__edit-button" type="button"></button>
+        <p class="profile__job">Исследователь океана</p>
+      </div>
+      <button class="button profile__add-button" type="button"></button>
+    </section>
+    <section class="elements">
+      <ul class="elements__wrapper">
+        <li class="elements__item">
+          <div class="elements__card">
+            <img class="elements__image" src="images/bg.png" alt="город России Карачаевск">
+            <div class="elements__info">
+              <h2 class="elements__name">Карачаевск</h2>
+              <div class="elements__favorite elements__favorite_disabled"></div>
+            </div>
+          </div>
+        </li>
+        <li class="elements__item">
+          <div class="elements__card">
+            <img class="elements__image" src="images/elbrus.jpg" alt="гора в России Эльбрус">
+            <div class="elements__info">
+              <h2 class="elements__name">Гора Эльбрус</h2>
+              <div class="elements__favorite elements__favorite_disabled"></div>
+            </div>
+          </div>
+        </li>
+        <li class="elements__item">
+          <div class="elements__card">
+            <img class="elements__image" src="images/Dombai.jpg" alt="город в России Домбай">
+            <div class="elements__info">
+              <h2 class="elements__name">Домбай</h2>
+              <div class="elements__favorite elements__favorite_disabled"></div>
+            </div>
+          </div>
+        </li>
+        <li class="elements__item">
+          <div class="elements__card">
+            <img class="elements__image" src="images/elbrus.jpg" alt="гора в России Эльбрус">
+            <div class="elements__info">
+              <h2 class="elements__name">Гора Эльбрус</h2>
+              <div class="elements__favorite elements__favorite_disabled"></div>
+            </div>
+          </div>
+        </li>
+        <li class="elements__item">
+          <div class="elements__card">
+            <img class="elements__image" src="images/Dombai.jpg" alt="город России Карачаевск">
+            <div class="elements__info">
+              <h2 class="elements__name">Домбай</h2>
+              <div class="elements__favorite elements__favorite_disabled"></div>
+            </div>
+          </div>
+        </li>
+        <li class="elements__item">
+          <div class="elements__card">
+            <img class="elements__image" src="images/karachaevsk.jpg" alt="Фотография места">
+            <div class="elements__info">
+              <h2 class="elements__name">Карачаевск</h2>
+              <div class="elements__favorite elements__favorite_disabled"></div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__text">&#169; 2020 Mesto Russia</p>
+  </footer>
+  <div class="popup">
+    <div class="popup__container">
+      <button class="button popup__button popup__button_purpose_close" type="button"></button>
+      <h2 class="popup__heading">Редактировать профиль</h2>
+      <form class="popup__form" action="" name="name-form">
+        <input class="popup__input popup__input-name" type="text" value="Жак-Ив Кусто" name="nick">
+        <input class="popup__input popup__input-job" type="text" value="Исследователь океана" name="job">
+        <button class="button popup__button popup__button_purpose_submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
   <div class="popup">
     <div class="popup__container">
       <button class="popup__button popup__button_purpose_close"></button>
@@ -19,67 +105,6 @@
       </form>
     </div>
   </div>
-  <header class="header">
-    <img class="header__logo" src="images/logo.svg" alt="Логотип">
-  </header>
-  <main class="main">
-    <section class="profile">
-      <img class="profile__avatar" src="images/avatar.jpg" alt="Аватар">
-      <div class="profile__info">
-        <p class="profile__name">Жак-Ив Кусто</p>
-        <button class="profile__edit-button"></button>
-        <p class="profile__job">Исследователь океана</p>
-      </div>
-      <button class="profile__add-button"></button>
-    </section>
-    <section class="elements">
-      <div class="elements__card">
-        <img class="elements__image" src="images/karachaevsk.jpg" alt="Фотография места">
-        <div class="elements__info">
-          <h2 class="elements__name">Карачаевск</h2>
-          <div class="elements__favorite elements__favorite_disabled"></div>
-        </div>
-      </div>
-      <div class="elements__card">
-        <img class="elements__image" src="images/elbrus.jpg" alt="Фотография места">
-        <div class="elements__info">
-          <h2 class="elements__name">Гора Эльбрус</h2>
-          <div class="elements__favorite elements__favorite_disabled"></div>
-        </div>
-      </div>
-      <div class="elements__card">
-        <img class="elements__image" src="images/Dombai.jpg" alt="Фотография места">
-        <div class="elements__info">
-          <h2 class="elements__name">Домбай</h2>
-          <div class="elements__favorite elements__favorite_disabled"></div>
-        </div>
-      </div>
-      <div class="elements__card">
-        <img class="elements__image" src="images/elbrus.jpg" alt="Фотография места">
-        <div class="elements__info">
-          <h2 class="elements__name">Гора Эльбрус</h2>
-          <div class="elements__favorite elements__favorite_disabled"></div>
-        </div>
-      </div>
-      <div class="elements__card">
-        <img class="elements__image" src="images/Dombai.jpg" alt="Фотография места">
-        <div class="elements__info">
-          <h2 class="elements__name">Домбай</h2>
-          <div class="elements__favorite elements__favorite_disabled"></div>
-        </div>
-      </div>
-      <div class="elements__card">
-        <img class="elements__image" src="images/karachaevsk.jpg" alt="Фотография места">
-        <div class="elements__info">
-          <h2 class="elements__name">Карачаевск</h2>
-          <div class="elements__favorite elements__favorite_disabled"></div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer class="footer">
-    <p class="footer__text">&#169; 2020 Mesto Russia</p>
-  </footer>
-  <script src="script.js"></script>
+  <script src="scripts/script.js"></script>
 </body>
 </html>
