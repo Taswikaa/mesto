@@ -15,6 +15,35 @@
   margin: 0;
 }
 
+.popup__input::-webkit-input-placeholder {
+  font-family: 'inter', sans-serif;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+  opacity: .3;
+}
+.popup__input::-moz-placeholder {
+  font-family: 'inter', sans-serif;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+  opacity: .3;
+}
+.popup__input::-ms-input-placeholder {
+  font-family: 'inter', sans-serif;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+  opacity: .3;
+}
+.popup__input::placeholder {
+  font-family: 'inter', sans-serif;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+  opacity: .3;
+}
+
 @media screen and (min-width: 880px) {
   .popup__input {
     min-width: 358px;
