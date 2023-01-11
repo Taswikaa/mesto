@@ -1,0 +1,20 @@
+.elements__wrapper {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .elements__wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 17px;
+    justify-content: center;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+}
