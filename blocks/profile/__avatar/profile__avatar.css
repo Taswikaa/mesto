@@ -4,3 +4,9 @@
   aspect-ratio: 1;
   object-fit: cover;
 }
+
+@media screen and (min-width: 1024px) {
+  .profile__avatar {
+    align-self: flex-start;
+  }
+}
