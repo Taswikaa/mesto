@@ -25,8 +25,8 @@ const handleFormSubmit = function(e) {
 
 popupEditButton.addEventListener('click', function() {
   popup.classList.add('popup_opened');
-  pageName.textContent = nameInput.value;
-  pageJob.textContent = jobInput.value;
+  nameInput.textContent = pageName.textContent ;
+  jobInput.textContent = pageJob.textContent;
 })
 
 popupCloseButton.addEventListener('click', closePopup);
