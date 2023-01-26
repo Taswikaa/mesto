@@ -23,66 +23,23 @@
     </section>
     <section class="elements">
       <ul class="elements__wrapper">
-        <li class="elements__item">
-          <div class="elements__card">
-            <img class="elements__image" src="images/karachaevsk.jpg" alt="город России Карачаевск">
-            <div class="elements__info">
-              <h2 class="elements__name">Карачаевск</h2>
-              <button class="button elements__favorite" type="button"></button>
-            </div>
-          </div>
-        </li>
-        <li class="elements__item">
-          <div class="elements__card">
-            <img class="elements__image" src="images/elbrus.jpg" alt="гора в России Эльбрус">
-            <div class="elements__info">
-              <h2 class="elements__name">Гора Эльбрус</h2>
-              <button class="button elements__favorite" type="button"></button>
-            </div>
-          </div>
-        </li>
-        <li class="elements__item">
-          <div class="elements__card">
-            <img class="elements__image" src="images/Dombai.jpg" alt="город в России Домбай">
-            <div class="elements__info">
-              <h2 class="elements__name">Домбай</h2>
-              <button class="button elements__favorite" type="button"></button>
-            </div>
-          </div>
-        </li>
-        <li class="elements__item">
-          <div class="elements__card">
-            <img class="elements__image" src="images/elbrus.jpg" alt="гора в России Эльбрус">
-            <div class="elements__info">
-              <h2 class="elements__name">Гора Эльбрус</h2>
-              <button class="button elements__favorite" type="button"></button>
-            </div>
-          </div>
-        </li>
-        <li class="elements__item">
-          <div class="elements__card">
-            <img class="elements__image" src="images/Dombai.jpg" alt="город России Карачаевск">
-            <div class="elements__info">
-              <h2 class="elements__name">Домбай</h2>
-              <button class="button elements__favorite" type="button"></button>
-            </div>
-          </div>
-        </li>
-        <li class="elements__item">
-          <div class="elements__card">
-            <img class="elements__image" src="images/karachaevsk.jpg" alt="Фотография места">
-            <div class="elements__info">
-              <h2 class="elements__name">Карачаевск</h2>
-              <button class="button elements__favorite" type="button"></button>
-            </div>
-          </div>
-        </li>
       </ul>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__text">&#169; 2020 Mesto Russia</p>
   </footer>
+  <template id="elements-template">
+    <li class="elements__item">
+      <div class="elements__card">
+        <img class="elements__image" src="" alt="Фотография места">
+        <div class="elements__info">
+          <h2 class="elements__name"></h2>
+          <button class="button elements__favorite" type="button"></button>
+        </div>
+      </div>
+    </li>
+  </template>
   <div class="popup">
     <div class="popup__container">
       <button class="button popup__button popup__button_purpose_close" type="button"></button>
