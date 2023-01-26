@@ -33,6 +33,11 @@ popupCloseButton.addEventListener('click', closePopup);
 
 popupForm.addEventListener('submit', handleFormSubmit);
 
+// New popup
+
+const popupAdd = document.querySelector('.add-popup');
+
+
 // Elements
 
 const initialCards = [

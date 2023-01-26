@@ -44,10 +44,21 @@
     <div class="popup__container">
       <button class="button popup__button popup__button_purpose_close" type="button"></button>
       <p class="popup__heading">Редактировать профиль</p>
-      <form class="popup__form" action="#" name="popupform">
+      <form class="popup__form" action="#" name="popup-form">
         <input class="popup__input popup__input_pupose_name" type="text" value="Жак-Ив Кусто" name="nick" placeholder="Ваше имя" required>
         <input class="popup__input popup__input_pupose_job" type="text" value="Исследователь океана" name="job" placeholder="Ваше хобби" required>
         <button class="popup__button popup__button_purpose_submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="add-popup add-popup_opened">
+    <div class="add-popup__container">
+      <button class="button add-popup__button add-popup__button_purpose_close" type="button"></button>
+      <p class="add-popup__heading">Новое место</p>
+      <form class="add-popup__form" action="#" name="popup-add-form">
+        <input class="add-popup__input add-popup__input_pupose_place" type="text" value="" name="place" placeholder="Название" required>
+        <input class="add-popup__input add-popup__input_pupose_url" type="url" value="" name="url-image" placeholder="Ссылка на картинку" required>
+        <button class="add-popup__button add-popup__button_purpose_submit">Создать</button>
       </form>
     </div>
   </div>
