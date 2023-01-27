@@ -7,6 +7,50 @@ const jobInput = document.querySelector('.popup__input_pupose_job');
 const pageName = document.querySelector('.profile__name');
 const pageJob = document.querySelector('.profile__job');
 
+// Elements
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+initialCards.forEach(el => {
+  const elementsTemplate = document.querySelector('#elements-template');
+  const elementsList = document.querySelector('.elements__wrapper');
+
+  const elementsItem = elementsTemplate.content.cloneNode(true);
+  elementsItem.querySelector('.elements__image').src = `${el.link}`;
+  elementsItem.querySelector('.elements__name').textContent = `${el.name}`;
+
+  elementsList.append(elementsItem);
+})
+
+// Like
+
+const likeButtons = document.querySelectorAll('.elements__favorite');
+
 const closePopup = function() {
   popup.classList.remove('popup_opened');
 }
@@ -54,6 +98,8 @@ const popupAddCloseButton = document.querySelector('.add-popup__button_purpose_c
 const placeInput = document.querySelector('.add-popup__input_pupose_place');
 const urlInput = document.querySelector('.add-popup__input_pupose_url');
 
+const addedCardsLikeButtons = [];
+
 popupAddButton.addEventListener('click', openAddPopup);
 
 popupAddCloseButton.addEventListener('click', closeAddPopup);
@@ -67,49 +113,27 @@ popupAddForm.addEventListener('submit', (e) => {
   const elementsItem = elementsTemplate.content.cloneNode(true);
   elementsItem.querySelector('.elements__image').src = `${urlInput.value}`;
   elementsItem.querySelector('.elements__name').textContent = `${placeInput.value}`;
+  addedCardsLikeButtons.push(elementsItem.querySelector('.button'));
 
   elementsList.prepend(elementsItem);
   urlInput.value = '';
   placeInput.value = '';
   closeAddPopup();
+
+  addedCardsLikeButtons.forEach(el => {
+    el.addEventListener('click', () => {
+      el.classList.toggle('elements__favorite_active');
+      console.log(addedCardsLikeButtons.length);
+    })
+  })
 })
 
-// Elements
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-initialCards.forEach(el => {
-  const elementsTemplate = document.querySelector('#elements-template');
-  const elementsList = document.querySelector('.elements__wrapper');
-
-  const elementsItem = elementsTemplate.content.cloneNode(true);
-  elementsItem.querySelector('.elements__image').src = `${el.link}`;
-  elementsItem.querySelector('.elements__name').textContent = `${el.name}`;
-
-  elementsList.append(elementsItem);
+likeButtons.forEach(el => {
+  el.addEventListener('click', () => {
+    el.classList.toggle('elements__favorite_active');
+    console.log(addedCardsLikeButtons.length);
+  })
 })
+
+
+
