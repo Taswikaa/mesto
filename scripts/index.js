@@ -11,6 +11,18 @@ const closePopup = function() {
   popup.classList.remove('popup_opened');
 }
 
+const openPopup = function() {
+  popup.classList.add('popup_opened');
+}
+
+const closeAddPopup = function() {
+  popupAdd.classList.remove('add-popup_opened');
+}
+
+const openAddPopup = function() {
+  popupAdd.classList.add('add-popup_opened');
+}
+
 const handleFormSubmit = function(e) {
   e.preventDefault();
 
@@ -24,7 +36,7 @@ const handleFormSubmit = function(e) {
 }
 
 popupEditButton.addEventListener('click', function() {
-  popup.classList.add('popup_opened');
+  openPopup();
   nameInput.textContent = pageName.textContent ;
   jobInput.textContent = pageJob.textContent;
 })
@@ -36,7 +48,31 @@ popupForm.addEventListener('submit', handleFormSubmit);
 // New popup
 
 const popupAdd = document.querySelector('.add-popup');
+const popupAddForm = document.querySelector('.add-popup__form');
+const popupAddButton = document.querySelector('.profile__add-button');
+const popupAddCloseButton = document.querySelector('.add-popup__button_purpose_close');
+const placeInput = document.querySelector('.add-popup__input_pupose_place');
+const urlInput = document.querySelector('.add-popup__input_pupose_url');
 
+popupAddButton.addEventListener('click', openAddPopup);
+
+popupAddCloseButton.addEventListener('click', closeAddPopup);
+
+popupAddForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const elementsTemplate = document.querySelector('#elements-template');
+  const elementsList = document.querySelector('.elements__wrapper');
+
+  const elementsItem = elementsTemplate.content.cloneNode(true);
+  elementsItem.querySelector('.elements__image').src = `${urlInput.value}`;
+  elementsItem.querySelector('.elements__name').textContent = `${placeInput.value}`;
+
+  elementsList.prepend(elementsItem);
+  urlInput.value = '';
+  placeInput.value = '';
+  closeAddPopup();
+})
 
 // Elements
 
