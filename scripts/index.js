@@ -47,9 +47,13 @@ initialCards.forEach(el => {
   elementsList.append(elementsItem);
 })
 
+const cards = document.querySelectorAll('.elements__card');
+
 // Like
 
 const likeButtons = document.querySelectorAll('.elements__favorite');
+
+const buttonsDeleteCard = document.querySelectorAll('.elements__delete-icon');
 
 const closePopup = function() {
   popup.classList.remove('popup_opened');
@@ -123,7 +127,6 @@ popupAddForm.addEventListener('submit', (e) => {
   addedCardsLikeButtons.forEach(el => {
     el.addEventListener('click', () => {
       el.classList.toggle('elements__favorite_active');
-      console.log(addedCardsLikeButtons.length);
     })
   })
 })
@@ -131,7 +134,12 @@ popupAddForm.addEventListener('submit', (e) => {
 likeButtons.forEach(el => {
   el.addEventListener('click', () => {
     el.classList.toggle('elements__favorite_active');
-    console.log(addedCardsLikeButtons.length);
+  })
+})
+
+buttonsDeleteCard.forEach( (el, i) => {
+  el.addEventListener('click', () => {
+    cards[i].remove();
   })
 })
 
