@@ -49,6 +49,12 @@ initialCards.forEach(el => {
 
 const cards = document.querySelectorAll('.elements__card');
 
+const startImages = document.querySelectorAll('.elements__image');
+const imagePopup = document.querySelector('.image-popup');
+const imagePopupImg = document.querySelector('.image-popup__img');
+const imagePopupText = document.querySelector('.image-popup__text');
+const buttonCloseImagePopup = document.querySelector('.image-popup__close-button');
+
 // Like
 
 const likeButtons = document.querySelectorAll('.elements__favorite');
@@ -105,6 +111,9 @@ const urlInput = document.querySelector('.add-popup__input_pupose_url');
 const addedCardsLikeButtons = [];
 const addedCardsDeleteButtons = [];
 const addedCards = [];
+const addedImages = [];
+const addedUrls = [];
+const addedFigcaptions = [];
 
 popupAddButton.addEventListener('click', openAddPopup);
 
@@ -119,10 +128,25 @@ popupAddForm.addEventListener('submit', (e) => {
   const elementsItem = elementsTemplate.content.cloneNode(true);
   elementsItem.querySelector('.elements__image').src = `${urlInput.value}`;
   elementsItem.querySelector('.elements__name').textContent = `${placeInput.value}`;
+
   addedCardsLikeButtons.push(elementsItem.querySelector('.elements__favorite'));
 
   addedCards.push(elementsItem.querySelector('.elements__card'));
   addedCardsDeleteButtons.push(elementsItem.querySelector('.elements__delete-icon'));
+
+  addedImages.push(elementsItem.querySelector('.elements__image'));
+  addedUrls.push(urlInput.value);
+  addedFigcaptions.push(placeInput.value);
+
+  addedImages.forEach( (el, i) => {
+    if (i === addedImages.length - 1) {
+      el.addEventListener('click', () => {
+        imagePopupText.textContent = addedFigcaptions[i];
+        imagePopupImg.src = addedUrls[i];
+        openImagePopup();
+      })
+    }
+  })
 
   addedCardsDeleteButtons.forEach( (el, i) => {
     if (i === addedCardsDeleteButtons.length - 1) {
@@ -158,7 +182,6 @@ buttonsDeleteCard.forEach( (el, i) => {
   })
 })
 
-
 // New popup 2
 
 const closeImagePopup = function() {
@@ -169,11 +192,7 @@ const openImagePopup = function() {
   imagePopup.classList.add('image-popup_opened');
 }
 
-const startImages = document.querySelectorAll('.elements__image');
-const imagePopup = document.querySelector('.image-popup');
-const imagePopupImg = document.querySelector('.image-popup__img');
-const imagePopupText = document.querySelector('.image-popup__text');
-const buttonCloseImagePopup = document.querySelector('.image-popup__close-button');
+
 
 startImages.forEach( (el, i) => {
   el.addEventListener('click', () => {
