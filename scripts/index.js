@@ -117,18 +117,20 @@ popupAddForm.addEventListener('submit', (e) => {
   const elementsItem = elementsTemplate.content.cloneNode(true);
   elementsItem.querySelector('.elements__image').src = `${urlInput.value}`;
   elementsItem.querySelector('.elements__name').textContent = `${placeInput.value}`;
-  addedCardsLikeButtons.push(elementsItem.querySelector('.button'));
+  addedCardsLikeButtons.push(elementsItem.querySelector('.elements__favorite'));
+
+  addedCardsLikeButtons.forEach( (el, i) => {
+    if (i === addedCardsLikeButtons.length - 1) {
+      el.addEventListener('click', () => {
+        el.classList.toggle('elements__favorite_active');
+      })
+    }
+  })
 
   elementsList.prepend(elementsItem);
   urlInput.value = '';
   placeInput.value = '';
   closeAddPopup();
-
-  addedCardsLikeButtons.forEach(el => {
-    el.addEventListener('click', () => {
-      el.classList.toggle('elements__favorite_active');
-    })
-  })
 })
 
 likeButtons.forEach(el => {
@@ -169,6 +171,3 @@ startImages.forEach( (el, i) => {
 })
 
 buttonCloseImagePopup.addEventListener('click', closeImagePopup);
-
-
-
