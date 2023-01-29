@@ -47,7 +47,7 @@ initialCards.forEach(el => {
   elementsList.append(elementsItem);
 })
 
-const cards = document.querySelectorAll('.elements__card');
+const cards = document.querySelectorAll('.elements__item');
 
 const startImages = document.querySelectorAll('.elements__image');
 const imagePopup = document.querySelector('.image-popup');
@@ -133,7 +133,7 @@ popupAddForm.addEventListener('submit', (e) => {
 
   addedCardsLikeButtons.push(elementsItem.querySelector('.elements__favorite'));
 
-  addedCards.push(elementsItem.querySelector('.elements__card'));
+  addedCards.push(elementsItem.querySelector('.elements__item'));
   addedCardsDeleteButtons.push(elementsItem.querySelector('.elements__delete-icon'));
 
   addedImages.push(elementsItem.querySelector('.elements__image'));

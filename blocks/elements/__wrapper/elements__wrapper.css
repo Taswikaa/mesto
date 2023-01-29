@@ -13,7 +13,18 @@
     flex-direction: row;
     flex-wrap: wrap;
     column-gap: 17px;
-    justify-content: start;
+    justify-content: flex-start;
+    max-width: 581px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .elements__wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 17px;
+    justify-content: flex-start;
     max-width: 880px;
     margin: 0 auto;
   }
