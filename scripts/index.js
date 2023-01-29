@@ -103,6 +103,8 @@ const placeInput = document.querySelector('.add-popup__input_pupose_place');
 const urlInput = document.querySelector('.add-popup__input_pupose_url');
 
 const addedCardsLikeButtons = [];
+const addedCardsDeleteButtons = [];
+const addedCards = [];
 
 popupAddButton.addEventListener('click', openAddPopup);
 
@@ -118,6 +120,17 @@ popupAddForm.addEventListener('submit', (e) => {
   elementsItem.querySelector('.elements__image').src = `${urlInput.value}`;
   elementsItem.querySelector('.elements__name').textContent = `${placeInput.value}`;
   addedCardsLikeButtons.push(elementsItem.querySelector('.elements__favorite'));
+
+  addedCards.push(elementsItem.querySelector('.elements__card'));
+  addedCardsDeleteButtons.push(elementsItem.querySelector('.elements__delete-icon'));
+
+  addedCardsDeleteButtons.forEach( (el, i) => {
+    if (i === addedCardsDeleteButtons.length - 1) {
+      el.addEventListener('click', () => {
+        addedCards[i].remove();
+      })
+    }
+  })
 
   addedCardsLikeButtons.forEach( (el, i) => {
     if (i === addedCardsLikeButtons.length - 1) {
