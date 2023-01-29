@@ -86,6 +86,8 @@ const handleFormSubmit = function(e) {
   pageName.textContent = `${formName}`;
   pageJob.textContent = `${formJob}`;
 
+  popup.classList.remove('popup-animation');
+  popup.classList.add('popup-animation');
   closePopup();
 }
 
@@ -203,3 +205,5 @@ startImages.forEach( (el, i) => {
 })
 
 buttonCloseImagePopup.addEventListener('click', closeImagePopup);
+
+// Animations
