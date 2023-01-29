@@ -144,4 +144,31 @@ buttonsDeleteCard.forEach( (el, i) => {
 })
 
 
+// New popup 2
+
+const closeImagePopup = function() {
+  imagePopup.classList.remove('image-popup_opened');
+}
+
+const openImagePopup = function() {
+  imagePopup.classList.add('image-popup_opened');
+}
+
+const startImages = document.querySelectorAll('.elements__image');
+const imagePopup = document.querySelector('.image-popup');
+const imagePopupImg = document.querySelector('.image-popup__img');
+const imagePopupText = document.querySelector('.image-popup__text');
+const buttonCloseImagePopup = document.querySelector('.image-popup__close-button');
+
+startImages.forEach( (el, i) => {
+  el.addEventListener('click', () => {
+    imagePopupImg.src = initialCards[i].link;
+    imagePopupText.textContent = initialCards[i].name;
+    openImagePopup();
+  })
+})
+
+buttonCloseImagePopup.addEventListener('click', closeImagePopup);
+
+
 
