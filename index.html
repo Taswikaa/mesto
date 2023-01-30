@@ -41,7 +41,7 @@
       </div>
     </li>
   </template>
-  <div class="popup">
+  <div class="popup popup_edit">
     <div class="popup__container">
       <button class="button popup__button popup__button_purpose_close" type="button"></button>
       <p class="popup__heading">Редактировать профиль</p>
@@ -52,24 +52,25 @@
       </form>
     </div>
   </div>
-  <div class="add-popup">
-    <div class="add-popup__container">
-      <button class="button add-popup__button add-popup__button_purpose_close" type="button"></button>
-      <p class="add-popup__heading">Новое место</p>
-      <form class="add-popup__form" action="#" name="popup-add-form">
-        <input class="add-popup__input add-popup__input_pupose_place" type="text" value="" name="place" placeholder="Название" required>
-        <input class="add-popup__input add-popup__input_pupose_url" type="url" value="" name="url-image" placeholder="Ссылка на картинку" required>
-        <button class="add-popup__button add-popup__button_purpose_submit">Создать</button>
+  <div class="popup popup_add">
+    <div class="popup__container">
+      <button class="button popup__button popup__button_purpose_close" type="button"></button>
+      <p class="popup__heading">Новое место</p>
+      <form class="popup__form" action="#" name="popup-form">
+        <input class="popup__input popup__input_pupose_place" type="text" value="" name="place" placeholder="Название" required>
+        <input class="popup__input popup__input_pupose_url" type="url" value="" name="url-image" placeholder="Ссылка на картинку" required>
+        <button class="popup__button popup__button_purpose_submit">Создать</button>
       </form>
     </div>
   </div>
-  <div class="image-popup">
-    <figure class="image-popup__figure">
-      <button class="button image-popup__close-button"></button>
-      <img class="image-popup__img" src="#" alt="Фотография места">
-      <figcaption class="image-popup__text"></figcaption>
+  <div class="popup popup_image">
+    <figure class="popup__figure">
+      <button class="button popup__button_purpose_close"></button>
+      <img class="popup__img" src="#" alt="Фотография места">
+      <figcaption class="popup__text"></figcaption>
     </figure>
   </div>
+  <script src="scripts/cards.js"></script>
   <script src="scripts/index.js"></script>
 </body>
 </html>
