@@ -1,5 +1,8 @@
 /* vendor */
 @import url(../vendor/normalize.css);
+/* animations */
+@import url(../blocks/appear/appear.css);
+@import url(../blocks/disappear/disappear.css);
 /* page */
 @import url(../blocks/page/page.css);
 /* button */
