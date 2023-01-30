@@ -18,7 +18,6 @@
 /* elements */
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/elements/__favorite/elements__favorite.css);
-@import url(../blocks/elements/__item/elements__item.css);
 @import url(../blocks/elements/__card/elements__card.css);
 @import url(../blocks/elements/__delete-icon/elements__delete-icon.css);
 @import url(../blocks/elements/__wrapper/elements__wrapper.css);

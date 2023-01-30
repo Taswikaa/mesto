@@ -194,8 +194,6 @@ const openImagePopup = function() {
   imagePopup.classList.add('image-popup_opened');
 }
 
-
-
 startImages.forEach( (el, i) => {
   el.addEventListener('click', () => {
     imagePopupImg.src = initialCards[i].link;
@@ -205,5 +203,3 @@ startImages.forEach( (el, i) => {
 })
 
 buttonCloseImagePopup.addEventListener('click', closeImagePopup);
-
-// Animations
