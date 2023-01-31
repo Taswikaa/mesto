@@ -34,27 +34,11 @@ initialCards.forEach(el => {
 // Open/Close popups
 
 const openPopup = function(popup) {
-  if (popup.classList.contains('popup_edit')) {
-    popupEdit.classList.add('popup_opened');
-  }
-  if (popup.classList.contains('popup_add')) {
-    popupAdd.classList.add('popup_opened');
-  }
-  if (popup.classList.contains('popup_image')) {
-    popupImage.classList.add('popup_opened');
-  }
+  popup.classList.add('popup_opened');
 }
 
 const closePopup = function(popup) {
-  if (popup.classList.contains('popup_edit')) {
-    popupEdit.classList.remove('popup_opened');
-  }
-  if (popup.classList.contains('popup_add')) {
-    popupAdd.classList.remove('popup_opened');
-  }
-  if (popup.classList.contains('popup_image')) {
-    popupImage.classList.remove('popup_opened');
-  }
+  popup.classList.remove('popup_opened');
 }
 
 // popupEdit
@@ -74,8 +58,8 @@ const handleFormSubmit = function(e) {
   const formName = nameInput.value;
   const formJob = jobInput.value;
   
-  pageName.textContent = `${formName}`;
-  pageJob.textContent = `${formJob}`;
+  pageName.textContent = formName;
+  pageJob.textContent = formJob;
   closePopup(popupEdit);
 }
 
