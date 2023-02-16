@@ -1,0 +1,9 @@
+.popup__span-error {
+  display: none;
+  color: rgb(255, 0, 0);
+  font-family: 'inter', sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  margin: -25px 0 13px -120px;
+  text-align: left;
+}

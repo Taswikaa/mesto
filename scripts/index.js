@@ -96,8 +96,7 @@ popupAddForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   elementsList.prepend(addCard(urlInput.value, placeInput.value));
-  urlInput.value = '';
-  placeInput.value = '';
+  popupAddForm.reset();
 
   closePopup(popupAdd);
 })
@@ -112,3 +111,27 @@ const buttonCloseImagePopup = popupImage.querySelector('.popup__button_purpose_c
 buttonCloseImagePopup.addEventListener('click', () => {
   closePopup(popupImage);
 });
+
+// popup close by click and esc
+
+const popupList = Array.from(document.querySelectorAll('.popup'));
+
+const closePopupByOuterClick = function(evt, popup) {
+  if (evt.target.classList.contains('popup')) {
+    closePopup(popup);
+  }
+}
+
+popupList.forEach(popup => {
+  popup.addEventListener('click', evt => {
+    closePopupByOuterClick(evt, popup);
+  })
+})
+
+window.addEventListener('keydown', evt => {
+  if (evt.key === 'Escape') {
+    popupList.forEach(popup => {
+      closePopup(popup);
+    })
+  }
+})
