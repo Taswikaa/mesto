@@ -1,3 +1,12 @@
+const validationConfig = {
+  formSelector: 'popup__form',
+  inputSelector: 'popup__input',
+  submitButtonSelector: 'popup__button_purpose_submit',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__span-error_active'
+}
+
 const enableValidation = function(formsElemenstsList) {
   const formList = Array.from(document.querySelectorAll(`.${formsElemenstsList.formSelector}`));
 
@@ -56,11 +65,4 @@ const enableValidation = function(formsElemenstsList) {
   })
 }
 
-enableValidation({
-  formSelector: 'popup__form',
-  inputSelector: 'popup__input',
-  submitButtonSelector: 'popup__button_purpose_submit',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__span-error_active'
-})
+enableValidation(validationConfig);

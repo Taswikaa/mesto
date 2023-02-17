@@ -33,12 +33,20 @@ initialCards.forEach(el => {
 
 // Open/Close popups
 
+const closePopupByPressEnter = function(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
 const openPopup = function(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByPressEnter);
 }
 
 const closePopup = function(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupByPressEnter);
 }
 
 // popupEdit
@@ -52,7 +60,7 @@ const jobInput = popupEdit.querySelector('.popup__input_pupose_job');
 const pageName = document.querySelector('.profile__name');
 const pageJob = document.querySelector('.profile__job');
 
-const handleFormSubmit = function(e) {
+const submitEditProfileForm = function(e) {
   e.preventDefault();
 
   const formName = nameInput.value;
@@ -73,7 +81,7 @@ popupEditCloseButton.addEventListener('click', () => {
   closePopup(popupEdit);
 });
 
-popupEditForm.addEventListener('submit', handleFormSubmit);
+popupEditForm.addEventListener('submit', submitEditProfileForm);
 
 // popupAdd
 
@@ -81,6 +89,7 @@ const popupAdd = document.querySelector('.popup_add');
 const popupAddForm = popupAdd.querySelector('.popup__form');
 const popupAddOpenButton = document.querySelector('.profile__add-button');
 const popupAddCloseButton = popupAdd.querySelector('.popup__button_purpose_close');
+const popupAddSubmitButton = popupAdd.querySelector('.popup__button_purpose_submit');
 const placeInput = popupAdd.querySelector('.popup__input_pupose_place');
 const urlInput = popupAdd.querySelector('.popup__input_pupose_url');
 
@@ -97,6 +106,8 @@ popupAddForm.addEventListener('submit', (e) => {
 
   elementsList.prepend(addCard(urlInput.value, placeInput.value));
   popupAddForm.reset();
+  popupAddSubmitButton.classList.add('popup__button_disabled');
+  popupAddSubmitButton.setAttribute('disabled', 'disabled');
 
   closePopup(popupAdd);
 })
@@ -126,12 +137,4 @@ popupList.forEach(popup => {
   popup.addEventListener('click', evt => {
     closePopupByOuterClick(evt, popup);
   })
-})
-
-window.addEventListener('keydown', evt => {
-  if (evt.key === 'Escape') {
-    popupList.forEach(popup => {
-      closePopup(popup);
-    })
-  }
 })
