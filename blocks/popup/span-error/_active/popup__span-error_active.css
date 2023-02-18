@@ -1,4 +1,4 @@
 .popup__span-error_active {
-  display: block;
+  opacity: 1;
   width: 238px;
 }

@@ -16,7 +16,7 @@
   .profile__name {
     font-size: 42px;
     line-height: 48px;
-    text-align-last: left;
     max-width: 350px;
+    justify-self: left;
   }
 }

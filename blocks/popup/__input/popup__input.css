@@ -11,10 +11,6 @@
   line-height: 17px;
 }
 
-.popup__input:nth-child(2) {
-  margin: 0;
-}
-
 .popup__input::-webkit-input-placeholder {
   opacity: .4;
 }

@@ -50,6 +50,7 @@ const enableValidation = function(formsElemenstsList) {
     const errorInput = form.querySelector(`.${input.id}-error`);
     input.classList.remove(formsElemenstsList.inputErrorClass);
     errorInput.classList.remove(formsElemenstsList.errorClass);
+    errorInput.textContent = '';
   }
   
   const checkInputValidity = function(form, input) {
