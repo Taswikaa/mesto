@@ -1,42 +1,10 @@
+import { initialCards, validationConfig } from "./data.js";
 import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
 
 const elementsList = document.querySelector('.elements__wrapper');
 
-initialCards.forEach(el => {
-  const card = new Card(el, '#elements-template');
-  elementsList.append(card.generateCard());
-})
-
-// const addCard = function(src, name) {
-//   const elementsTemplate = document.querySelector('#elements-template');
-//   const elementsItem = elementsTemplate.content.cloneNode(true);
-
-//   elementsItem.querySelector('.elements__image').src = src;
-//   elementsItem.querySelector('.elements__name').textContent = name;
-
-//   const likeBtn = elementsItem.querySelector('.elements__favorite');
-//   likeBtn.addEventListener('click', () => {
-//     likeBtn.classList.toggle('elements__favorite_active');
-//   })
-
-//   const deleteBtn = elementsItem.querySelector('.elements__delete-icon');
-//   deleteBtn.addEventListener('click', () => {
-//     deleteBtn.closest('.elements__item').remove();
-//   })
-
-//   const image = elementsItem.querySelector('.elements__image');
-//   image.addEventListener('click', () => {
-//     popupImageImg.src = src;
-//     popupImageText.textContent = name;
-//     openPopup(popupImage);
-//   })
-
-//   return elementsItem;
-// }
-
-// initialCards.forEach(el => {
-//   elementsList.append(addCard(el.link, el.name));
-// })
+const formsList = Array.from(document.querySelectorAll('.popup__form'));
 
 const popupEdit = document.querySelector('.popup_edit');
 const popupEditOpenButton = document.querySelector('.profile__edit-button');
@@ -61,6 +29,11 @@ const popupImageText = popupImage.querySelector('.popup__text');
 const buttonCloseImagePopup = popupImage.querySelector('.popup__button_purpose_close');
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
+
+initialCards.forEach(el => {
+  const card = new Card(el, '#elements-template');
+  elementsList.append(card.generateCard());
+})
 
 const closePopupByOuterClick = function(evt, popup) {
   if (evt.target.classList.contains('popup')) {
@@ -141,5 +114,10 @@ popupAddForm.addEventListener('submit', (e) => {
 buttonCloseImagePopup.addEventListener('click', () => {
   closePopup(popupImage);
 });
+
+formsList.forEach(el => {
+  const form = new FormValidator(validationConfig, el)
+  form.enableValidation();
+})
 
 export { openPopup, popupImageImg, popupImageText, popupImage };
