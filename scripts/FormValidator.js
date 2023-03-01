@@ -1,13 +1,4 @@
-const validationConfig = {
-  formSelector: 'popup__form',
-  inputSelector: 'popup__input',
-  submitButtonSelector: 'popup__button_purpose_submit',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__span-error_active'
-}
-
- export class FormValidator {
+export class FormValidator {
   constructor(config, form) {
     this._formSelector = config.formSelector;
     this._inputSelector = config.inputSelector;
@@ -16,6 +7,8 @@ const validationConfig = {
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
     this._form = form;
+    this._inputList = Array.from(this._form.querySelectorAll('input'));
+    this._submitButton = this._form.querySelector(`.${this._submitButtonSelector}`);
   }
 
   _hasInvalidInput(inputList) {
@@ -57,8 +50,8 @@ const validationConfig = {
   }
 
   _setEventListeners(form, inactiveButtonClass, submitButtonSelector, inputErrorClass, errorClass) {
-    const inputList = Array.from(form.querySelectorAll('input'));
-    const submitButton = form.querySelector(`.${submitButtonSelector}`);
+    const inputList = this._inputList;
+    const submitButton = this._submitButton;
     this._toggleButtonState(inputList, submitButton, inactiveButtonClass);
   
     inputList.forEach(input => {
@@ -71,5 +64,18 @@ const validationConfig = {
 
   enableValidation() {
     this._setEventListeners(this._form, this._inactiveButtonClass, this._submitButtonSelector, this._inputErrorClass, this._errorClass);
+  }
+
+  resetValidation() {
+    this._toggleButtonState(this._inputList, this._submitButton, this._inactiveButtonClass);
+
+    this._inputList.forEach(input => {
+      this._hideInputError(this._form, input, this._inputErrorClass, this._errorClass);
+    })
+  }
+
+  disableSubmitButton() {
+    this._form.querySelector(`.${this._submitButtonSelector}`).classList.add('popup__button_disabled');
+    this._form.querySelector(`.${this._submitButtonSelector}`).setAttribute('disabled', 'disabled');
   }
 }
