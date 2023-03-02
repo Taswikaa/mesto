@@ -1,5 +1,3 @@
-// import { openPopup, popupImageImg, popupImageText, popupImage } from "./index.js";
-
 export class Card {
   constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
@@ -24,6 +22,7 @@ export class Card {
     this._setEventListeners();
 
     this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     this._element.querySelector('.elements__name').textContent = this._name;
 
     return this._element;
