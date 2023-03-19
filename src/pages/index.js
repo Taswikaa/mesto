@@ -4,7 +4,8 @@ import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import { initialCards, validationConfig, elementsList, popupEditSelector, popupEditOpenButton, popupEditForm, nameInput, jobInput, pageName, pageJob, popupAddSelector, popupAddForm, popupAddOpenButton, placeInput, urlInput, popupImageSelector } from "../utils/constans.js"
+import { initialCards, validationConfig, elementsList, popupEditSelector, popupEditOpenButton, popupEditForm, nameInput, jobInput, pageName, pageJob, popupAddSelector, popupAddForm, popupAddOpenButton, placeInput, urlInput, popupImageSelector } from "../utils/constans.js";
+import './index.css';
 
 const handleCardClick = function(name, link) {
   popupImage.open(name, link);
