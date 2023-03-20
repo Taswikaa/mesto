@@ -29,10 +29,13 @@ elementsList
 const popupEdit = new PopupWithForm(popupEditSelector, (evt) => {
   evt.preventDefault();
 
-  const formData = new UserInfo({name: nameInput, job: jobInput}, pageName, pageJob);
+  const formData = new UserInfo({name: popupEdit.inputValues.nick, job: popupEdit.inputValues.job}, pageName, pageJob);
 
   formData.setUserInfo(formData.getUserInfo().name, formData.getUserInfo().job);
-  
+
+  nameInput.defaultValue = popupEdit.inputValues.nick;
+  jobInput.defaultValue = popupEdit.inputValues.job;
+
   popupEdit.close();
 });
 
@@ -46,15 +49,13 @@ const popupAdd = new PopupWithForm(popupAddSelector, (evt) => {
   evt.preventDefault();
 
   const cardData = {
-    link: urlInput.value,
-    name: placeInput.value
+    link: popupAdd.inputValues['url-image'],
+    name: popupAdd.inputValues.place
   } 
 
   elementsList.prepend(createCard(cardData).generateCard());
 
-    popupAddForm.reset();
   validatorAddForm.disableSubmitButton();
-
 
   popupAdd.close();
 });
