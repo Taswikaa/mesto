@@ -13,11 +13,11 @@
   </header>
   <main class="main">
     <section class="profile">
-      <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
+      <img class="profile__avatar" src="" alt="Аватар">
       <div class="profile__info">
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <h1 class="profile__name"></h1>
         <button class="button profile__edit-button" type="button"></button>
-        <p class="profile__job">Исследователь океана</p>
+        <p class="profile__job"></p>
       </div>
       <button class="button profile__add-button" type="button"></button>
     </section>
@@ -36,7 +36,10 @@
         <img class="elements__image" src="#" alt="">
         <div class="elements__info">
           <h2 class="elements__name"></h2>
-          <button class="button elements__favorite" type="button"></button>
+          <div class="elements__likes">
+            <button class="button elements__favorite" type="button"></button>
+            <p class="elements__like-counter"></p>
+          </div>
         </div>
       </div>
     </li>
@@ -46,9 +49,9 @@
       <button class="button popup__button popup__button_purpose_close" type="button"></button>
       <p class="popup__heading">Редактировать профиль</p>
       <form class="popup__form" action="#" name="popup-form" novalidate>
-        <input class="popup__input popup__input_pupose_name" type="text" value="Жак-Ив Кусто" name="nick" placeholder="Ваше имя" id="nick-input" required minlength="2" maxlength="40">
+        <input class="popup__input popup__input_pupose_name" type="text" value="" name="nick" placeholder="Ваше имя" id="nick-input" required minlength="2" maxlength="40">
         <span class="popup__span-error nick-input-error"></span>
-        <input class="popup__input popup__input_pupose_job" type="text" value="Исследователь океана" name="job" placeholder="Ваше хобби" id="job-input" required minlength="2" maxlength="200">
+        <input class="popup__input popup__input_pupose_job" type="text" value="" name="job" placeholder="Ваше хобби" id="job-input" required minlength="2" maxlength="200">
         <span class="popup__span-error job-input-error"></span>
         <button class="popup__button popup__button_purpose_submit">Сохранить</button>
       </form>
@@ -74,7 +77,25 @@
       <figcaption class="popup__text"></figcaption>
     </figure>
   </div>
-  
+  <div class="popup popup_delete">
+    <div class="popup__container">
+      <button class="button popup__button popup__button_purpose_close" type="button"></button>
+      <p class="popup__heading">Вы уверены?</p>
+      <form class="popup__form" action="#" name="popup-form"><button class="popup__button popup__button_purpose_submit">Да</button></form>
+    </div>
+  </div>
+  <div class="popup popup_change-avatar">
+    <div class="popup__container">
+      <button class="button popup__button popup__button_purpose_close" type="button"></button>
+      <p class="popup__heading">Обновить аватар</p>
+      <form class="popup__form" action="#" name="popup-form" novalidate>
+        <input class="popup__input popup__input_pupose_url" type="url" value="" name="url-avatar" placeholder="Ссылка на аватар" id="url-avatar" required>
+        <span class="popup__span-error url-avatar-error"></span>
+        <button class="popup__button popup__button_purpose_submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
   <!-- <script type="module" src="pages/index.js"></script>
   <script type="module" src="components/Card.js"></script>
   <script type="module" src="components/FormValidator.js"></script>
