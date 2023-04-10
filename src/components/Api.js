@@ -4,6 +4,14 @@ export default class Api {
     this._key = key;
   }
 
+  _checkStatus(res) {
+    if (res.ok) {
+      return res.json();
+    }
+
+    return Promise.reject(res.status);
+  }
+
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
@@ -12,11 +20,7 @@ export default class Api {
       }
     })
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(res.status)
+      return this._checkStatus(res);
     })
   }
 
@@ -28,11 +32,7 @@ export default class Api {
       }
     })
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(res.status);
+      return this._checkStatus(res);
     })
   }
 
@@ -49,11 +49,7 @@ export default class Api {
       })
     })
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(res.status);
+      return this._checkStatus(res);
     })
   }
 
@@ -71,11 +67,7 @@ export default class Api {
       })
     })
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(res.status);
+      return this._checkStatus(res);
     })
   }
 
@@ -87,11 +79,7 @@ export default class Api {
       },
     })
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(res.status);
+      return this._checkStatus(res);
     })
   }
 
@@ -103,11 +91,7 @@ export default class Api {
       }
     })
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(res.status);
+      return this._checkStatus(res);
     })
   }
 
@@ -119,11 +103,7 @@ export default class Api {
       }
     })
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(res.status);
+      return this._checkStatus(res);
     })
   }
 
@@ -139,11 +119,7 @@ export default class Api {
       })
     })
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(res.status);
+      return this._checkStatus(res);
     })
   }
 } 

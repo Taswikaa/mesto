@@ -7,48 +7,51 @@ import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import { validationConfig, elementsList, popupEditSelector, popupEditOpenButton, popupEditSubmitButton, popupEditForm, nameInput, jobInput, pageName, pageJob, pageAvatar, popupAddSelector, popupAddForm, popupAddOpenButton, placeInput, urlInput, popupImageSelector, popupDeleteSelector, popupDeleteForm, popupChangeSelector, profileAvatar, popupChangeForm } from "../utils/constans.js";
 import './index.css';
+import { renderLoading } from "../utils/utils.js"
 import Popup from "../components/Popup.js";
 
 const popupDelete = new PopupWithForm(popupDeleteSelector, (evt) => {
   evt.preventDefault();
 
+  renderLoading(popupDeleteSelector, true, 'Удаление...', 'Удалить');
+
   api.deleteCard(popupDelete.cardId)
   .then(() => {
     popupDelete.Card.remove();
+    popupDelete.close();
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}, не удалось удалить карточку`);
+  })
+  .finally(() => {
+    renderLoading(popupDeleteSelector, false, 'Удаление...', 'Да');
   });
-  
-  popupDelete.close();
 });
 
 popupDelete.setEventListeners();
 
-const popupChange = new PopupWithForm(popupChangeSelector, (evt) => {
+const popupUpdateAvatar = new PopupWithForm(popupChangeSelector, (evt, inputValues) => {
   evt.preventDefault();
 
-  popupChangeSelector.querySelector('.popup__button_purpose_submit').textContent = 'Сохранение...'
+  renderLoading(popupChangeSelector, true, 'Сохранение...', 'Сохранить');
 
-  api.changeAvatar(popupChange.inputValues['url-avatar'])
+  api.changeAvatar(inputValues['url-avatar'])
   .then(() => {
     api.getUserInfo().then(data => {
       pageAvatar.src = data.avatar;
+      validatorChangeForm.disableSubmitButton();
+      popupUpdateAvatar.close();
     })
   })
   .catch(err => {
     console.log(`Ошибка: ${err}, не удалось изменить аватар`);
   })
   .finally(() => {
-    popupChangeSelector.querySelector('.popup__button_purpose_submit').textContent = 'Сохраненить'
+    renderLoading(popupChangeSelector, false, 'Сохранение...', 'Сохранить');
   });
-
-  validatorChangeForm.disableSubmitButton();
-
-  popupChange.close();
 })
 
-popupChange.setEventListeners();
+popupUpdateAvatar.setEventListeners();
 
 const handleCardClick = function(name, link) {
   popupImage.open(name, link);
@@ -86,11 +89,44 @@ const api = new Api({
   key: '1f54a3c5-b2a8-45c9-9b64-ac21ab4a1c2a'
 });
 
-api.getUserInfo()
+const getInitialCards = api.getInitialCards();
+
+const popupEditProfile = new PopupWithForm(popupEditSelector, (evt, inputValues) => {
+  evt.preventDefault();
+
+  renderLoading(popupEditSelector, true, 'Сохранение...', 'Сохранить');
+
+  const formData = new UserInfo({name: inputValues.nick, job: inputValues.job}, pageName, pageJob);
+
+  api.editUserInfo(formData.getUserInfo().name, formData.getUserInfo().job)
+  .then(data => {
+    formData.setUserInfo(data.name, data.about);
+    popupEditProfile.close();
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}, не удалось изменить данные`);
+  })
+  .finally(() => {
+    renderLoading(popupEditSelector, false, 'Сохранение...', 'Сохранить');
+  });
+});
+
+popupEditProfile.setEventListeners();
+
+popupEditOpenButton.addEventListener('click', () => {
+  popupEditProfile.open();
+
+  nameInput.value = pageName.textContent;
+  jobInput.value = pageJob.textContent;
+})
+
+const getUserInfo = api.getUserInfo();
+
+getUserInfo
 .then(data => {
-  pageName.textContent = data.name;
+  const userData = new UserInfo({ name: data.name, job: data.about }, pageName, pageJob);
+  userData.setUserInfo(data.name, data.about)
   nameInput.defaultValue = data.name;
-  pageJob.textContent = data.about;
   jobInput.defaultValue = data.about;
   pageAvatar.src = data.avatar;
 })
@@ -98,73 +134,14 @@ api.getUserInfo()
   console.log(`Ошибка: ${err}, данные о профиле не загружены`);
 })
 
-api.getInitialCards()
-.then(data => {
-  // data.forEach(el => {
-  //   if (el.likes.some(el => {
-  //     return el._id === 'e42aced187e502f6152d2af8';
-  //   })) {
-  //     console.log(el);
-  //   }
-  // })
-
-  const cardList = new Section({
-    items: data,
-    renderer: (item) => {
-      const card = createCard(item, item.owner._id === 'e42aced187e502f6152d2af8' ? true : false);
-
-      card.isLiked = item.likes.some(el => el._id === 'e42aced187e502f6152d2af8') ? true : false;
-
-      cardList.addItem(card.generateCard(card.isLiked));
-    },
-  },
-  elementsList,
-  );
-
-  cardList.renderItems();
-})
-.catch((err) => {
-  console.log(`Ошибка: ${err}, карточки не загружены`);
-})
-
-const popupEdit = new PopupWithForm(popupEditSelector, (evt) => {
+const popupAddCard = new PopupWithForm(popupAddSelector, (evt, inputValues) => {
   evt.preventDefault();
 
-  popupEditSubmitButton.textContent = 'Сохранение...';
-
-  const formData = new UserInfo({name: popupEdit.inputValues.nick, job: popupEdit.inputValues.job}, pageName, pageJob);
-
-  api.editUserInfo(formData.getUserInfo().name, formData.getUserInfo().job)
-  .then(data => {
-    formData.setUserInfo(data.name, data.about);
-  })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}, не удалось изменить данные`);
-  })
-  .finally(() => {
-    popupEditSubmitButton.textContent = 'Сохранить'
-  });
-
-  nameInput.defaultValue = popupEdit.inputValues.nick;
-  jobInput.defaultValue = popupEdit.inputValues.job;
-
-  popupEdit.close();
-});
-
-popupEdit.setEventListeners();
-
-popupEditOpenButton.addEventListener('click', () => {
-  popupEdit.open();
-})
-
-const popupAdd = new PopupWithForm(popupAddSelector, (evt) => {
-  evt.preventDefault();
-
-  popupAddSelector.querySelector('.popup__button_purpose_submit').textContent = 'Сохранение...';
+  renderLoading(popupAddSelector, true, 'Сохранение...', 'Создать');
 
   const cardData = {
-    link: popupAdd.inputValues['url-image'],
-    name: popupAdd.inputValues.place,
+    link: inputValues['url-image'],
+    name: inputValues.place,
     likes: [],
   } 
 
@@ -172,21 +149,30 @@ const popupAdd = new PopupWithForm(popupAddSelector, (evt) => {
   .then(data => {
     cardData._id = data._id;
 
-    elementsList.prepend(createCard(cardData, true).generateCard(false));
+    const dataArray = [cardData];
+    console.log(dataArray);
+
+    const newCard = new Section({
+      items: dataArray,
+      renderer: (item) => {
+        newCard.addItem(createCard(item, true).generateCard(false))
+      }
+    }, elementsList)
+
+    newCard.renderItems();
+
+    popupAddCard.close();
+    validatorAddForm.disableSubmitButton();
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}, не удалось загрузить карточку`);
   })
   .finally(() => {
-    popupAddSelector.querySelector('.popup__button_purpose_submit').textContent = 'Создать';
+    renderLoading(popupAddSelector, false, 'Сохранение...', 'Создать');
   });
-
-  validatorAddForm.disableSubmitButton();
-
-  popupAdd.close();
 });
 
-popupAdd.setEventListeners();
+popupAddCard.setEventListeners();
 
 const popupImage = new PopupWithImage(popupImageSelector);
 popupImage.setEventListeners();
@@ -204,9 +190,34 @@ validatorFormList.forEach(validator => {
 })
 
 popupAddOpenButton.addEventListener('click', () => {
-  popupAdd.open();
+  popupAddCard.open();
 });
 
 profileAvatar.addEventListener('click', () => {
-  popupChange.open();
+  popupUpdateAvatar.open();
 });
+
+Promise.all([getUserInfo, getInitialCards])
+.then(res => {
+  getInitialCards
+   .then(data => {
+   
+     const cardList = new Section({
+       items: data,
+       renderer: (item) => {
+         const card = createCard(item, item.owner._id === res[0]._id ? true : false);
+       
+         card.isLiked = item.likes.some(el => el._id === res[0]._id) ? true : false;
+       
+         cardList.addItemReverse(card.generateCard(card.isLiked));
+       },
+     },
+     elementsList,
+     );
+   
+     cardList.renderItems();
+   })
+   .catch((err) => {
+     console.log(`Ошибка: ${err}, карточки не загружены`);
+   })
+})
