@@ -37,11 +37,9 @@ const popupUpdateAvatar = new PopupWithForm(popupChangeSelector, (evt, inputValu
 
   api.changeAvatar(inputValues['url-avatar'])
   .then(() => {
-    api.getUserInfo().then(data => {
-      pageAvatar.src = data.avatar;
-      validatorChangeForm.disableSubmitButton();
-      popupUpdateAvatar.close();
-    })
+    pageAvatar.src = inputValues['url-avatar'];
+    validatorChangeForm.disableSubmitButton();
+    popupUpdateAvatar.close();
   })
   .catch(err => {
     console.log(`Ошибка: ${err}, не удалось изменить аватар`);
@@ -91,16 +89,16 @@ const api = new Api({
 
 const getInitialCards = api.getInitialCards();
 
+const pageUserInfo = new UserInfo(pageName, pageJob);
+
 const popupEditProfile = new PopupWithForm(popupEditSelector, (evt, inputValues) => {
   evt.preventDefault();
 
   renderLoading(popupEditSelector, true, 'Сохранение...', 'Сохранить');
 
-  const formData = new UserInfo({name: inputValues.nick, job: inputValues.job}, pageName, pageJob);
-
-  api.editUserInfo(formData.getUserInfo().name, formData.getUserInfo().job)
+  api.editUserInfo(inputValues.nick, inputValues.job)
   .then(data => {
-    formData.setUserInfo(data.name, data.about);
+    pageUserInfo.setUserInfo(data.name, data.about);
     popupEditProfile.close();
   })
   .catch((err) => {
@@ -122,17 +120,15 @@ popupEditOpenButton.addEventListener('click', () => {
 
 const getUserInfo = api.getUserInfo();
 
-getUserInfo
-.then(data => {
-  const userData = new UserInfo({ name: data.name, job: data.about }, pageName, pageJob);
-  userData.setUserInfo(data.name, data.about)
-  nameInput.defaultValue = data.name;
-  jobInput.defaultValue = data.about;
-  pageAvatar.src = data.avatar;
-})
-.catch((err) => {
-  console.log(`Ошибка: ${err}, данные о профиле не загружены`);
-})
+const cardSection = new Section({ 
+  renderer: (item, id) => {
+
+    const card = createCard(item, item.owner._id === id ? true : false);
+  
+    card.isLiked = item.likes.some(el => el._id === id) ? true : false;
+  
+    cardSection.addItemReverse(card.generateCard(card.isLiked));
+  },}, elementsList);
 
 const popupAddCard = new PopupWithForm(popupAddSelector, (evt, inputValues) => {
   evt.preventDefault();
@@ -149,17 +145,7 @@ const popupAddCard = new PopupWithForm(popupAddSelector, (evt, inputValues) => {
   .then(data => {
     cardData._id = data._id;
 
-    const dataArray = [cardData];
-    console.log(dataArray);
-
-    const newCard = new Section({
-      items: dataArray,
-      renderer: (item) => {
-        newCard.addItem(createCard(item, true).generateCard(false))
-      }
-    }, elementsList)
-
-    newCard.renderItems();
+    cardSection.addItem(createCard(cardData, true).generateCard(false));
 
     popupAddCard.close();
     validatorAddForm.disableSubmitButton();
@@ -199,25 +185,20 @@ profileAvatar.addEventListener('click', () => {
 
 Promise.all([getUserInfo, getInitialCards])
 .then(res => {
+  getUserInfo
+  .then(data => {
+    pageUserInfo.setUserInfo(data.name, data.about)
+    nameInput.defaultValue = data.name;
+    jobInput.defaultValue = data.about;
+    pageAvatar.src = data.avatar;
+  })
+
   getInitialCards
    .then(data => {
-   
-     const cardList = new Section({
-       items: data,
-       renderer: (item) => {
-         const card = createCard(item, item.owner._id === res[0]._id ? true : false);
-       
-         card.isLiked = item.likes.some(el => el._id === res[0]._id) ? true : false;
-       
-         cardList.addItemReverse(card.generateCard(card.isLiked));
-       },
-     },
-     elementsList,
-     );
-   
-     cardList.renderItems();
+    cardSection.getItems(data);
+    cardSection.renderItems(res[0]._id);
    })
-   .catch((err) => {
-     console.log(`Ошибка: ${err}, карточки не загружены`);
-   })
+})
+.catch((err) => {
+  console.log(`Ошибка: ${err}, карточки или данные профиля не загружены`);
 })
