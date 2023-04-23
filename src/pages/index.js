@@ -185,19 +185,13 @@ profileAvatar.addEventListener('click', () => {
 
 Promise.all([getUserInfo, getInitialCards])
 .then(res => {
-  getUserInfo
-  .then(data => {
-    pageUserInfo.setUserInfo(data.name, data.about)
-    nameInput.defaultValue = data.name;
-    jobInput.defaultValue = data.about;
-    pageAvatar.src = data.avatar;
-  })
+    pageUserInfo.setUserInfo(res[0].name, res[0].about)
+    nameInput.defaultValue = res[0].name;
+    jobInput.defaultValue = res[0].about;
+    pageAvatar.src = res[0].avatar;
 
-  getInitialCards
-   .then(data => {
-    cardSection.getItems(data);
+    cardSection.getItems(res[1]);
     cardSection.renderItems(res[0]._id);
-   })
 })
 .catch((err) => {
   console.log(`Ошибка: ${err}, карточки или данные профиля не загружены`);
